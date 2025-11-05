@@ -1,0 +1,36 @@
+/**:
+  ros__parameters:
+
+    include: "$(find-pkg-share zed_wrapper)/params/common.yaml"
+
+    general:
+      camera_name: "zed"
+      camera_model: "zed2"
+      serial_number: 0
+      pub_frame_rate: 15.0
+
+    pos_tracking:
+      pos_tracking_enabled: true      # เปิด VIO!
+      publish_tf: false
+      publish_map_tf: false
+      area_memory: false              # ปิด loop closure
+      imu_fusion: true
+      two_d_mode: true
+      base_frame: "zed_camera_link"
+
+    sensors:
+      publish_imu_tf: false
+
+    depth:
+      depth_mode: "PERFORMANCE"
+
+    object_detection:
+      od_enabled: false
+    body_tracking:
+      bt_enabled: false
+    mapping:
+      mapping_enabled: false
+
+    # QoS
+    qos_depth: 5
+    qos_reliability: "reliable"

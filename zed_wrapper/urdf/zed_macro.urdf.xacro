@@ -135,6 +135,15 @@
       <origin xyz="${optical_offset_x} ${baseline/2} 0" rpy="0 0 0" />
     </joint>
 
+    <!-- เพิ่มตรงนี้! -->
+    <link name="${name}_imu_link" />
+    <joint name="${name}_imu_joint" type="fixed">
+      <parent link="${name}_left_camera_frame"/>
+      <child link="${name}_imu_link"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+    </joint>
+    <!-- จบการเพิ่ม -->
+
     <link name="${name}_left_camera_optical_frame"/>
     <joint name="${name}_left_camera_optical_joint" type="fixed">
       <origin xyz="0 0 0" rpy="-${M_PI/2} 0.0 -${M_PI/2}"/>
