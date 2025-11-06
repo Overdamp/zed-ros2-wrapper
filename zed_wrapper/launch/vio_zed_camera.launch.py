@@ -9,10 +9,20 @@ from ament_index_python.packages import get_package_share_directory
 import os
 
 def generate_launch_description():
+    robot_name = "recon_bot"
+    package_description = f"{robot_name}_description"
+
     zed_launch_path = os.path.join(
         get_package_share_directory('zed_wrapper'),
         'launch',
         'zed_camera.launch.py'
+    )
+
+    ekf_config_path = os.path.join(
+        get_package_share_directory(package_description), 
+        'config', 
+        'rviz',
+        'recon_rviz_config.rviz'
     )
 
     # URDF ของคุณ
@@ -27,6 +37,14 @@ def generate_launch_description():
         get_package_share_directory('zed_wrapper'),
         'config',
         'zed_vio_params.yaml'
+    )
+
+    rviz_node = Node(
+        package="rviz2",
+        executable="rviz2",
+        name="rviz2",
+        arguments=["-d", rviz_config],
+        output={"stdout": "screen", "stderr": "log"}
     )
 
     return LaunchDescription([
@@ -51,23 +69,23 @@ def generate_launch_description():
             }.items()
         ),
 
-        # === REMAP odom และ imu (สำคัญมาก!) ===
-        # วิธีนี้: ใช้ Node เปล่า + remappings
-        Node(
-            package='topic_tools',
-            executable='relay',
-            name='odom_relay',
-            output='screen',
-            arguments=['/zed/zed_node/odom', '/camera_odom']  # input output
-        ),
+        # # === REMAP odom และ imu (สำคัญมาก!) ===
+        # # วิธีนี้: ใช้ Node เปล่า + remappings
+        # Node(
+        #     package='topic_tools',
+        #     executable='relay',
+        #     name='odom_relay',
+        #     output='screen',
+        #     arguments=['/zed/zed_node/odom', '/camera_odom']  # input output
+        # ),
 
-        Node(
-            package='topic_tools',
-            executable='relay',
-            name='imu_relay',
-            output='screen',
-            arguments=['/zed/zed_node/imu/data', '/imu/data']
-        ),
+        # Node(
+        #     package='topic_tools',
+        #     executable='relay',
+        #     name='imu_relay',
+        #     output='screen',
+        #     arguments=['/zed/zed_node/imu/data', '/imu/data']
+        # ),
 
         # === Depth to LaserScan ===
         Node(
