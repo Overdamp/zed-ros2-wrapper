@@ -18,9 +18,8 @@ def generate_launch_description():
         'zed_camera.launch.py'
     )
 
-    ekf_config_path = os.path.join(
+    rviz_config = os.path.join(
         get_package_share_directory(package_description), 
-        'config', 
         'rviz',
         'recon_rviz_config.rviz'
     )
@@ -104,4 +103,6 @@ def generate_launch_description():
                 ('scan', '/scan')
             ]
         ),
+
+        rviz_node ,
     ])

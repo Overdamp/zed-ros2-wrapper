@@ -70,9 +70,9 @@
             publish_map_tf: false # [usually overwritten by launch file] publish `map -> odom` TF
             map_frame: "map"
             odometry_frame: "odom"
-            base_frame: "Mobile_Base"
+            base_frame: "Mobile_Base" # Frame attached to the robot base
             area_memory_db_path: ""
-            area_memory: true # Enable to detect loop closure
+            area_memory: false # Enable to detect loop closure
             reset_odom_with_loop_closure: true # Re-initialize odometry to the last valid pose when loop closure happens (reset camera odometry drift)
             depth_min_range: 0.0 # Set this value for removing fixed zones of the robot in the FoV of the camerafrom the visual odometry evaluation
             set_as_static: false # If 'true' the camera will be static and not move in the environment

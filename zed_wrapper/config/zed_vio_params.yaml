@@ -15,8 +15,8 @@
       publish_map_tf: false
       area_memory: false              # ปิด loop closure
       imu_fusion: true
-      two_d_mode: true
-      base_frame: "zed_camera_link"
+      two_d_mode: false
+      base_frame: "Mobile_Base"
 
     sensors:
       publish_imu_tf: false
