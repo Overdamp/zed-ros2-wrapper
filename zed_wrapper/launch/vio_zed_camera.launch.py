@@ -104,5 +104,7 @@ def generate_launch_description():
             ]
         ),
 
-        rviz_node ,
+        # [Perfect Architecture] Rviz runs on Laptop only. 
+        # Disable on Jetson #2 to save GPU/CPU for Vision processing.
+        # rviz_node,
     ])
