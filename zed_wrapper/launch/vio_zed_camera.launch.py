@@ -35,7 +35,7 @@ def generate_launch_description():
     vio_params_path = os.path.join(
         get_package_share_directory('zed_wrapper'),
         'config',
-        'zed_vio_params.yaml'
+        'zed_mobile_params.yaml'
     )
 
     rviz_node = Node(
@@ -52,7 +52,7 @@ def generate_launch_description():
             PythonLaunchDescriptionSource(zed_launch_path),
             launch_arguments={
                 'camera_model': 'zed2',
-                'camera_name': 'zed',
+                'camera_name': 'zed_mobile',
                 'node_name': 'zed_node',
 
                 # URDF
@@ -75,7 +75,7 @@ def generate_launch_description():
         #     executable='relay',
         #     name='odom_relay',
         #     output='screen',
-        #     arguments=['/zed/zed_node/odom', '/camera_odom']  # input output
+        #     arguments=['/zed_mobile/zed_node/odom', '/camera_odom']  # input output
         # ),
 
         # Node(
@@ -83,7 +83,7 @@ def generate_launch_description():
         #     executable='relay',
         #     name='imu_relay',
         #     output='screen',
-        #     arguments=['/zed/zed_node/imu/data', '/imu/data']
+        #     arguments=['/zed_mobile/zed_node/imu/data', '/imu/data']
         # ),
 
         # === Depth to LaserScan ===
@@ -95,11 +95,11 @@ def generate_launch_description():
                 'scan_time': 0.0333,
                 'range_min': 0.3,
                 'range_max': 20.0,
-                'output_frame_id': 'zed_camera_link'
+                'output_frame_id': 'zed_mobile_left_camera_frame'
             }],
             remappings=[
-                ('image', '/zed/zed_node/depth/depth_registered'),
-                ('camera_info', '/zed/zed_node/depth/camera_info'),
+                ('image', '/zed_mobile/zed_node/depth/depth_registered'),
+                ('camera_info', '/zed_mobile/zed_node/depth/camera_info'),
                 ('scan', '/scan')
             ]
         ),
